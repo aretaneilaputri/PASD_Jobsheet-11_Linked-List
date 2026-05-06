@@ -7,7 +7,6 @@ public class SingleLinkedList02 {
     NodeMahasiswa02 head;
     NodeMahasiswa02 tail;
 
-    
     boolean isEmpty() {
         return (head == null);
     }
@@ -26,7 +25,6 @@ public class SingleLinkedList02 {
         }
     }
 
-    
     public void addFirst(Mahasiswa02 input) {
         NodeMahasiswa02 ndInput = new NodeMahasiswa02(input, null);
         if (isEmpty()) {
@@ -38,7 +36,6 @@ public class SingleLinkedList02 {
         }
     }
 
-    
     public void addLast(Mahasiswa02 input) {
         NodeMahasiswa02 ndInput = new NodeMahasiswa02(input, null);
         if (isEmpty()) {
@@ -50,7 +47,6 @@ public class SingleLinkedList02 {
         }
     }
 
-    
     public void insertAfter(String key, Mahasiswa02 input) {
         NodeMahasiswa02 ndInput = new NodeMahasiswa02(input, null);
         NodeMahasiswa02 temp = head;
@@ -67,7 +63,6 @@ public class SingleLinkedList02 {
         } while (temp != null);
     }
 
-    
     public void insertAt(int index, Mahasiswa02 input) {
         if (index < 0) {
             System.out.println("indeks salah");
@@ -85,8 +80,90 @@ public class SingleLinkedList02 {
         }
     }
 
+    public void getData(int index) {
+        NodeMahasiswa02 tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        tmp.data.tampilInformasi();
+    }
 
- public void addFromKeyboard() {
+    public int indexOf(String key) {
+        NodeMahasiswa02 tmp = head;
+        int index = 0;
+        while (tmp != null && !tmp.data.nama.equalsIgnoreCase(key)) {
+            tmp = tmp.next;
+            index++;
+        }
+        if (tmp == null) {
+            return -1;
+        } else {
+            return index;
+        }
+    }
+
+    public void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih Kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            head = head.next;
+        }
+    }
+
+    public void removeLast() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih Kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            NodeMahasiswa02 temp = head;
+            while (temp.next != tail) {
+                temp = temp.next;
+            }
+            temp.next = null;
+            tail = temp;
+        }
+    }
+
+    public void remove(String key) {
+        if (isEmpty()) {
+            System.out.println("Linked List masih Kosong, tidak dapat dihapus!");
+        } else {
+            NodeMahasiswa02 temp = head;
+            while (temp != null) {
+                if ((temp.data.nama.equalsIgnoreCase(key)) && (temp == head)) {
+                    this.removeFirst();
+                    break;
+                } else if (temp.data.nama.equalsIgnoreCase(key)) {
+                    temp.next = temp.next.next;
+                    if (temp.next == null) {
+                        tail = temp;
+                    }
+                    break;
+                }
+                temp = temp.next;
+            }
+        }
+    }
+
+    public void removeAt(int index) {
+        if (index == 0) {
+            removeFirst();
+        } else {
+            NodeMahasiswa02 temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+            if (temp.next == null) {
+                tail = temp;
+            }
+        }
+    }
+
+    public void addFromKeyboard() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Masukkan jumlah mahasiswa : ");
         int jumlah = sc.nextInt();
