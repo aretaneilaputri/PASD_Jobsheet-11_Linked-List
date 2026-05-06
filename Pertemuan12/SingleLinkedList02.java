@@ -84,4 +84,28 @@ public class SingleLinkedList02 {
             }
         }
     }
+
+
+ public void addFromKeyboard() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Masukkan jumlah mahasiswa : ");
+        int jumlah = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 1; i <= jumlah; i++) {
+            System.out.println("--- Data Mahasiswa ke-" + i + " ---");
+            System.out.print("Masukkan NIM    : ");
+            String nim = sc.nextLine();
+            System.out.print("Masukkan Nama   : ");
+            String nama = sc.nextLine();
+            System.out.print("Masukkan Kelas  : ");
+            String kelas = sc.nextLine();
+            System.out.print("Masukkan IPK    : ");
+            double ipk = sc.nextDouble();
+            sc.nextLine();
+            Mahasiswa02 mhs = new Mahasiswa02(nim, nama, kelas, ipk);
+            addLast(mhs);
+            System.out.println("Data berhasil ditambahkan.\n");
+        }
+    }
 }

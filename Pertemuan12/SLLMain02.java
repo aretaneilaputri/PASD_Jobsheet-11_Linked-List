@@ -24,6 +24,10 @@ public class SLLMain02 {
         sll.print();                            
 
         sll.insertAt(2, mhs2);                  
-        sll.print();                            
+        sll.print();     
+        
+        sll.addFromKeyboard();
+        sll.print();
+
     }
 }
