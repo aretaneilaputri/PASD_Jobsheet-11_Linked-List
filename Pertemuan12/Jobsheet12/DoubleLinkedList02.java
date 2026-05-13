@@ -48,12 +48,11 @@ public class DoubleLinkedList02 {
 
         Node02 newNode02 = new Node02(data);
 
-        // Jika current adalah tail, node baru ditambahkan di akhir
         if (current == tail) {
             newNode02.prev = current;
             current.next = newNode02;
             tail = newNode02;
-        } else { // node baru disisipkan di tengah
+        } else {
             newNode02.prev = current;
             newNode02.next = current.next;
             current.next.prev = newNode02;
@@ -76,19 +75,50 @@ public class DoubleLinkedList02 {
         }
     }
 
-
-public void printRreverse() {
+    public void printReverse() {
         if (isEmpty()) {
             System.out.println("Linked List masih kosong.");
             return;
         }
+
         System.out.println("Data dari belakang ke depan:");
         Node02 current = tail;
+
         while (current != null) {
             current.data.tampil();
-            current = current.prev;  
+            current = current.prev;
+        }
+    }
+
+    public void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+
+        if (head == tail) {
+            head = tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+    }
+
+    public void removeLast() {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+        } else {
+            Node02 hapus = tail;
+
+            System.out.println("Data berhasil dihapus:");
+            hapus.data.tampil();
+
+            if (head == tail) {
+                head = tail = null;
+            } else {
+                tail = tail.prev;
+                tail.next = null;
+            }
         }
     }
 }
-
-

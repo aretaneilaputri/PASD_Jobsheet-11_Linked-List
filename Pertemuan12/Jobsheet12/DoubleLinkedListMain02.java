@@ -59,6 +59,15 @@ public class DoubleLinkedListMain02 {
                     list.insertAfter(keyNim, dataBaru);
                     break;
 
+                case 4:
+                    list.removeFirst();
+                    break;
+                
+                case 5:
+                    list.removeLast();
+                     System.out.println("Data berhasil dihapus.");
+                    break;
+
                 case 6:
                     list.print();
                     break;
